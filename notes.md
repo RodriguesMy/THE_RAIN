@@ -3,7 +3,7 @@
 Team
 <h>The team consists of the following members (with the assigned roles):
 <br/>
-Myriam - Tereza Rodrigues - develops most of the JavaScript and some of the HTML code,,,
+Myriam - Tereza Rodrigues - develops most of the JavaScript and some of the HTML code
 <br/>
 Zaxarias Gregoriou - designs the web app, also does the testing 
 <br/>
@@ -19,5 +19,4 @@ Week1 (18th Nov)
 <br/>
 Attendance: Myriam, Zaxarias, Sotiris
 <br/>
-This is our first meeting. 
-  We overall discussed how we are going to start working on the project and created the design.
+This is our first meeting. We overall discussed how we are going to start working on the project and created the design.
