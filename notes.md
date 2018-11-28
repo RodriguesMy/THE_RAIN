@@ -23,7 +23,7 @@ Date 18th November
 <br/>
 Attendance: Myriam, Zaxarias, Sotiris
 <br/>
-This is our first meeting. We overall discussed how we are going to start working on the project and created the design.
+This is our first meeting. We overall discussed how we are going to start working on the project and created some design.
 <br/>
 <br/>
 Date 27 November<br/>
