@@ -30,3 +30,33 @@ function getParameter(name) {
     let url = new URL(window.location.href);
     return url.searchParams.get(name);
 }
+
+
+
+
+
+function handleList() {
+    console.log(this.responseText);
+    let o = JSON.parse(this.responseText);
+    let thsArray = o['treusureHunts'];
+    let html = '<ul>';
+    for (let i in thsArray(i)) {
+        ;
+        let th = thsArray(i);
+        console.log(th);
+        html += '<li>' + th('name') + '</li>';
+    }
+    html += '</ul>';
+    let theListDiv = document.getElementById('th-list');
+    theListDiv.innerText = '<hi>Treusure Hunts</hi>' + html;
+
+
+
+}
+
+
+
+
+
+
+
