@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Let's Go Hunting!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="style.css"rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -23,13 +24,14 @@
     First, tell us your team </br>name and
     we are ready to go!
     </br></br></br>
-    Name: <input type="text" id="name">
+    Name: <input type="text" required id="player">
     </br>
-    <button onclick="setName()" href="app.html" >Submit</button>
+    <button onclick="triggerStart();" value="Start">Start</button>
 </div>
 
+<div id="errors" style="color: red;"></div>
 
-
+<script src="Script.js"></script>
 
 </body>
 </html>
