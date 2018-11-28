@@ -1,3 +1,27 @@
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by your browser.");
+    }
+}
+function showPosition(position){
+alert("Latitude: " + position.coords.latitude + ", Longitude: " + position.coords.longitude);
+}
+showPosition();
+getLocation();
+
+
+
+
+
+
+
+
+
+
+
+
 const app = 'team6';
 
 function triggerStart() {
@@ -22,7 +46,7 @@ function handleStart() {
     } else {
         let errorDiv = document.getElementById('errors');
         let errorMessage = o['errorMessages'][0];
-        errorDiv.innerHTML = '<b>' + errorMessage + '</b>';
+        errorDiv = alert('<b>' + errorMessage + '</b>');
     }
 }
 

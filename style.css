@@ -23,10 +23,10 @@
     float: left;
     position: absolute;
     margin-top:1000px;
-    margin-left:120px;
-    margin-bottom:100px;
+    margin-left:100px;
+    margin-bottom:60px;
     list-style:none;
-    font-size:120px;
+    font-size:100px;
 }
 .about{
     position:absolute;
@@ -85,6 +85,11 @@ margin-left:10px;
     border-left:2px solid black;
     border-right:2px solid black;
     border-bottom:2px solid black;
-    padding:auto;
     background-color: lightgray;
+
+}
+
+.button:active{
+    background-color:darkgrey;
+    color:white;
 }
