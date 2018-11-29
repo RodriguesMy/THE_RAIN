@@ -64,31 +64,31 @@ function apiStart(player,app,uuid) {
     xmlHttpRequest.send();
 }
 
-var List1 = document.getElementById("divList");
+var listDiv = document.getElementById("divList");
 function handleStart() {
 console.log("START");
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             console.log(this.responseText);
-            let o = JSON.parse(this.responseText);
-            for (let i = 0; i < object.treasureHunts.length; i++) {
-                var newItem = document.createElement("li");
-                var linkItem = document.createElement("a");
-                listItem.innerHTML = object.treasureHunts[i].name;
-                listItem.href = "https://codecyprus.org/th/api/start?player=Homer&app=simpsons&treasure-hunt-id="+object.treasureHunts[i].uuid;
+            var o = JSON.parse(this.responseText);
+            for (let i = 0; i < o.treasureHunts.length; i++) {
+                var inList = document.createElement("li");
+                var listItem = document.createElement("a");
+                listItem.innerHTML = o.treasureHunts[i].name;
+                listItem.href = "https://codecyprus.org/th/api/start?player=Homer&app=simpsons&treasure-hunt-id="+o.treasureHunts[i].uuid;
                 inList.appendChild(listItem);
-                List1.appendChild(inList);
+                listDiv.appendChild(inList);
             }
         }
         else
             {
-                let errorDiv = document.getElementById('errors');
-                let errorMessage = o['errorMessages'][0];
-                errorDiv.innerHTML = alert(errorMessage);
+              //  let errorDiv = document.getElementById('errors');
+              //  let errorMessage = o['errorMessages'][0];
+              // errorDiv.innerHTML = alert(errorMessage);
             }
-        }
-    };
+        };
+
     xhttp.open("GET", "https://codecyprus.org/th/api/list", true);
     xhttp.send();
 }
