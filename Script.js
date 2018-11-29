@@ -63,24 +63,34 @@ function apiStart(player,app,uuid) {
     xmlHttpRequest.open('GET', url, true);
     xmlHttpRequest.send();
 }
+
+var List1 = document.getElementById("divList");
 function handleStart() {
-   console.log(this.responseText);
-    let o = JSON.parse(this.responseText);
-    let html='<ul>';
-    if(o['status'] === 'OK') {
-       let thsArray=o['treasureHunts'];
-        for(let i in thsArray){
-            let th=thsArray[i];
-            html+='<li><a href="sampleTreasureHunt.html?player='+th['player']+'&app='+app+'&treasure-hunt-id='+th['uuid'];
+console.log("START");
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            let o = JSON.parse(this.responseText);
+            for (let i = 0; i < object.treasureHunts.length; i++) {
+                var newItem = document.createElement("li");
+                var linkItem = document.createElement("a");
+                listItem.innerHTML = object.treasureHunts[i].name;
+                listItem.href = "https://codecyprus.org/th/api/start?player=Homer&app=simpsons&treasure-hunt-id="+object.treasureHunts[i].uuid;
+                inList.appendChild(listItem);
+                List1.appendChild(inList);
+            }
         }
-        html += '</ul>';
-        let thisDiv=document.getElementById('th-start');
-        thisDiv.innerHTML=html;
-    } else {
-        let errorDiv = document.getElementById('errors');
-        let errorMessage = o['errorMessages'][0];
-        errorDiv.innerHTML = alert(errorMessage);
-    }
+        else
+            {
+                let errorDiv = document.getElementById('errors');
+                let errorMessage = o['errorMessages'][0];
+                errorDiv.innerHTML = alert(errorMessage);
+            }
+        }
+    };
+    xhttp.open("GET", "https://codecyprus.org/th/api/list", true);
+    xhttp.send();
 }
 
 function getParameter(name) {
@@ -109,3 +119,37 @@ function getParameter(name) {
 //
 //     }
 // }
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
