@@ -41,4 +41,5 @@ In this meeting, we created some og the javascript code.
 Date 29 November</br>
 Attendance:Myriam
 Myriam tried to develop some of the javascript code.
+So far she did the /list and the /start but had some trouble with some code.
 
