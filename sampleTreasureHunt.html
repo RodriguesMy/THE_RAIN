@@ -24,13 +24,24 @@
     First, tell us your team </br>name and
     we are ready to go!
     </br></br></br>
-    Name: <input type="text" required id="player">
+    Name: <input class="input" type="text" required id="player">
     </br>
-    <button onclick="triggerStart();" value="Start">Start</button>
+    <button id="th-start" onclick="triggerStart();" value="Start">Start</button>
 </div>
-
 <div id="errors" style="color: red;"></div>
 
+<style>
+    .input
+    {
+        position:absolute;
+        min-width:22%;
+        height: 11%;
+        z-index:10;
+        background-color: white;
+        border: 1px solid black;
+
+    }
+</style>
 
 
 </body>
