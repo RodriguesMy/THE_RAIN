@@ -35,7 +35,7 @@ We overall did the whole design, landing page, selection of treasure hunt etc.
 <br/>
 Date 28 November<br/>
 Attendance: Myriam, Zaxarias<br/>
-We had a meeting with our proffeson Mr. Nearchos Paspallis.
+We had a meeting with our proffesor Mr. Nearchos Paspallis.
 In this meeting, we created some og the javascript code.
 
 Date 29 November</br>
@@ -43,3 +43,12 @@ Attendance:Myriam
 Myriam tried to develop some of the javascript code.
 So far she did the /list and the /start but had some trouble with some code.
 
+Date 30 November
+Myriam, Zacharias
+Had a quick meeting with our Mr. Nearchos Paspallis.
+Started the whole thing from the beggining because it was messed up.
+This actually helped because we were able to understand how javascript works with html.
+Achieved a few things today.
+So far we created the /list, /start, /question, /answer.
+There are a few mistakes if the status is not okay, meaning with the error messages, but if the status is ok it works fine.
+I will contact my proffeson in Monday to sort that out.
