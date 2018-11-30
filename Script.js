@@ -55,6 +55,7 @@ function triggerStart() {
     apiStart(player,app,uuid);
 }
 
+//https://codecyprus.org/th/api/start?player=Homer&app=simpsons-app&treasure-hunt-id=ag9nfmNvZGVjeXBydXNvcmdyGQsSDFRyZWFzdXJlSHVudBiAgICAvKGCCgw
 function apiStart(player,app,uuid) {
     let url = API_PREFIX +'start?player='+player+'&app='+app+'&treasure-hunt-id='+uuid;
     let xmlHttpRequest = new XMLHttpRequest();
@@ -63,129 +64,92 @@ function apiStart(player,app,uuid) {
     xmlHttpRequest.send();
 }
 
-
+var listDiv = document.getElementById("divList");
 function handleStart() {
-   console.log(this.responseText);
-    let o = JSON.parse(this.responseText);
-    let html='<ul>';
-    let session;
-    if(o['status'] === 'OK') {
-       let thsArray=o['treasureHunts'];
-        for(let i in thsArray){
-            let th=thsArray[i];
-            session=th['session'];
-            html+='<li><a href="Question.html"+<li></a>';
+console.log("START");
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText);
+            var o = JSON.parse(this.responseText);
+            for (let i = 0; i < o.treasureHunts.length; i++) {
+                var inList = document.createElement("li");
+                var listItem = document.createElement("a");
+                listItem.innerHTML = o.treasureHunts[i].name;
+                listItem.href = "https://codecyprus.org/th/api/start?player=Homer&app=simpsons&treasure-hunt-id="+o.treasureHunts[i].uuid;
+                inList.appendChild(listItem);
+                listDiv.appendChild(inList);
+            }
         }
-        html += '</ul>';
-        let thisDiv=document.getElementById('th-start');
-        thisDiv.innerHTML=html;
+        else
+            {
+              //  let errorDiv = document.getElementById('errors');
+              //  let errorMessage = o['errorMessages'][0];
+              // errorDiv.innerHTML = alert(errorMessage);
+            }
+        };
 
-    } else {o['errors'][0];
-        let errorMessage = o['errorMessages']
-        let errorDiv = document.getElementByI[0];
-        errorDiv.innerHTML = alert(errorMessage);
-    }
+    xhttp.open("GET", "https://codecyprus.org/th/api/list", true);
+    xhttp.send();
 }
 
 function getParameter(name) {
     let url = new URL(window.location.href);
     return url.searchParams.get(name);
 }
-//QUESTION-------------------------------------------------
-function triggerQuestion(session){
-    questionStart(session);
-}
-
-function questionStart(session){
-    let url=API_PREFIX+'question';
-    let xmlHttpRequest = new XMLHttpRequest();
-    xmlHttpRequest.onload=handleQuestion;
-    xmlHttpRequest.open('GET',url,true);
-    xmlHttpRequest.send();
-}
-
-function handleQuestion(){
-    console.log(this.responseText);
-    let o=JSON.parse(this.responseText);
-    let html='<ul>';
-    if(o[status]==='OK'){
-        let thsArray=o['treasureHunts'];
-        for(let i in thsArray) {
-            let th = thsArray[i];
-            html+='<li><a href="Question.html?player='+th['player']+'&app='+app+'&treasure-hunt-id='+th['uuid'];
-        }
-        html+='</ul>';
-        thisDiv.innerHTML=html;
-    }
-}
-let thisDiv=document.getElementById('th-question');
-
-
-//ANSWER--------------------------------------------------
-// function triggerAnswer(session){
-//     let answer=document.getElementById('answer'.value);
-//     AnswerStart(session,answer);
+// //-------------------------------------------------------------
+// function triggerQuestion(){
+//     let session=document.getElementById('session'.value);
+//     questionStart(session);
 // }
 //
-// function answerStart(session,answer){
-//     let url=API_PREFIX+'answer?session='+session;
+// function questionStart(session){
+//     let url=API_PREFIX+player+'&app='+app+'&treasure-hunt-id='+uuid+'&session='+session;
 //     let xmlHttpRequest = new XMLHttpRequest();
-//     xmlHttpRequest.onload=handleAnswer;
+//     xmlHttpRequest.onload=handleQuestion;
 //     xmlHttpRequest.open('GET',url,true);
 //     xmlHttpRequest.send();
 // }
 //
-// function handleAnswer(){
+//    thListDiv.innerHTML = '<h1>Treasure Hunts</h1>' + html;
+// function handleQuestion(){
 //     console.log(this.responseText);
 //     let o=JSON.parse(this.responseText);
-//     let html='<ul>';
-//     if(o[status]==='OK'){
-//         let thsArray=o['treasureHunts'];
-//         for(let i in thsArray){
-//             let th=thsArray[i];
-//          //not sure   html+='<li><a onclick="triggerQuestion(session)" href="Question.html?player='+th['player']+'&app='+app+'&treasure-hunt-id='+th['uuid'];
-//         }
-//         html+='</ul>';
-//         let thisDiv=document.getElementById('th-answer');
-//         thisDiv.innerHTML=html;
-//     }else{
-//         let errorFix=document.getElementById('errors');
-//         let errorMessage = o['errorMessages'][0];
-//         errorDiv.innerHTML = alert(errorMessage);
+//     if(o['completed']===true){
+//
 //     }
 // }
 
-//COOKIES----------------------------------------------------
-// function setCookie(session) {
-//     var d = new Date();
-//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-//     var expires = "expires="+d.toUTCString();
-//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-// }
-//
-// function getCookie(cname) {
-//     var name = cname + "=";
-//     var ca = document.cookie.split(';');
-//     for(var i = 0; i < ca.length; i++) {
-//         var c = ca[i];
-//         while (c.charAt(0) == ' ') {
-//             c = c.substring(1);
-//         }
-//         if (c.indexOf(name) == 0) {
-//             return c.substring(name.length, c.length);
-//         }
-//     }
-//     return "";
-// }
-//
-// function checkCookie() {
-//     var user = getCookie("username");
-//     if (user != "") {
-//         alert("Welcome again " + user);
-//     } else {
-//         user = prompt("Please enter your name:", "");
-//         if (user != "" && user != null) {
-//             setCookie("username", user, 365);
-//         }
-//     }
-// }
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
