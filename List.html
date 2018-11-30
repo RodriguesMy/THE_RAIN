@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Question</title>
-    <link href="style.css"rel="stylesheet" type="text/css">
+    <title>Select Treasure Hunt!</title>
 </head>
-<body onload="triggerQuestion();">
+<body onload="showList()">
+
 <!--STANDARD-->
 <h1 class="logoname" >THE_RAIN <img src="drop.png" alt="drop" width="30" height="30"></img.src></h1>
 <div class="about">
@@ -19,12 +19,16 @@
 </div>
 <!--STANDARD-->
 
-<div id = "th-question"></div></div>
+<div class="main-text">
+    First, select a Treasure to Hunt!
+</div>
 
-<input type="text" id="answer">
-<div id="error"></div>
-<button id="th-answer" onclick="triggerAnswer();">Submit Answer</button>
-<div id="result"></div>
-<script src="Script.js"></script>
+
+<a id="th-list" value="Start"></a>
+<div>
+    <ul id = "divList">
+    </ul>
+</div>
+<script src="Script.js">Select</script>
 </body>
 </html>

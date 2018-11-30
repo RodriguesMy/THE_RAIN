@@ -2,43 +2,38 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Start</title>
-    <link href="style.css"rel="stylesheet" type="text/css">
+    <title>Let's Go Hunting!</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
-<body onload=" handleStart()">
-
-
-<h1 class="logoname" >THE_RAIN <img src="drop.png" alt="drop" width="20" height="20" align="right"></img.src></h1>
-<ul class="about">
-    <li><a href="about.html">ABOUT</a></li>
-
-</ul>
-<ul class="help">
-    <li><a href="help.html">HELP</a></li>
-</ul>
+<body>
+<!--STANDARD-->
+<h1 class="logoname" >THE_RAIN <img src="drop.png" alt="drop" width="30" height="30"></img.src></h1>
+<div class="about">
+    <a href="About.html">ABOUT</a>
+</div>
+<div class="help">
+    <a href="help.html">HELP</a>
+</div>
 <div class="logo">
-    <img src="logo.png"alt="one-pirate"   alt="one-pirate" width="500";></img.src>
+    <img src="logo.PNG" alt="one-pirate"   width="200";></img.src>
 </div>
-<div class="main-text">
-    First, select a Treasure to Hunt!
+<!--STANDARD-->
+
+<div>
+    Off to Sample Treasure Hunt! </br>
+    First, tell us your team </br>name and
+    we are ready to go!
+    </br></br></br>
+    Name: <input class="input" type="text" required id="player">
+    </br>
+    <button id="th-start" onclick="triggerStart();"   value="Start">Start Hunting!</button>
+    <div id="th-question"></div>
 </div>
-</br>
-<br>
-<br>
-    <div>
-        <ul id = "divList">
 
-
-
-        </ul>
-    </div>
-
-<br>
-    <a id="th-list" onclick="triggerStart();" value="Start">Start</a>
-
-    </br></br>
+<div id="errorsDiv" style="=color: red;">
 </div>
-</br>
 <script src="Script.js"></script>
 </body>
 </html>
