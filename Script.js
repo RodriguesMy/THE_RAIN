@@ -30,11 +30,6 @@ function handleList(){
     thsListDiv.innerHTML='<h1>Treasure Hunts:</h1>'+html;
 }
 
-function getParameter(name) {
-    let url = new URL(window.location.href);
-    return url.searchParams.get(name);
-}
-
 
 //LOCATION--------------------------------------------------------
 function apiLocation(session, lat, lng) {
@@ -43,7 +38,7 @@ function apiLocation(session, lat, lng) {
     xmlHttpRequest.open('GET', url, true);
     xmlHttpRequest.send();
 }
-apiLocation();
+
 
 //START------------------------------------------------------------
 function triggerStart() {
@@ -66,8 +61,7 @@ function handleStart() {
     if (o['status'] === 'OK') {
         window.location.href = 'Question.html?session=' + o['session'];
     } else {
-        console.log('errorMessages: ' + o['errorMessages'][0]);
-        thisDiv.innerHTML = o['errorMessages'][0];
+        document.getElementById('errorsDiv').innerHTML = o['errorMessages'][0];
     }
 }
 
@@ -90,15 +84,14 @@ function questionStart(session){
     xmlHttpRequest.send();
 }
 
-function handleQuestion(){
+function handleQuestion() {
     console.log(this.responseText);
-    let o=JSON.parse(this.responseText);
-    //if(o[status]==='OK'){
-        document.getElementById('th-question').innerHTML='Question:</br>'+o['questionText'];
-   // }else{
-       // let thisDiv=document.getElementById['error'];
-       // thisDiv.innerHTML = o['errorMessages'][0];
-   // }
+    let o = JSON.parse(this.responseText);
+    if(o['status']==='OK'){
+    document.getElementById('th-question').innerHTML = 'Question:</br>' + o['questionText'];
+}else{
+        document.getElementById('errors').innerHTML= o['questionText'];
+    }
 }
 
 
@@ -117,25 +110,72 @@ function answerStart(session,answer){
     xmlHttpRequest.send();
 }
 
-function handleAnswer(){
-    let o=JSON.parse(this.responseText);
-   //if(o[status]==='OK'){
-        document.getElementById('result').innerHTML='Result: '+o['correct'];
-        if(o['numOfQuestions']===0){
-            triggerQuestion();
-        }else{
-            triggerScore();
+function handleAnswer() {
+    console.log(this.responseText);
+    let o = JSON.parse(this.responseText);
+        document.getElementById('result').innerHTML = 'Result: ' + o['correct']+'<div>'+o['message']+'</div>';
+        if (o['completed'] === 'true') {
+            window.location.href = 'Score.html?session=' + o['session'];
         }
-    // }else{
-    //     let errorFix=document.getElementById('errors');
-    //     let errorMessage = o['errorMessages'][0];
-    //     errorDiv.innerHTML = alert(errorMessage);
-    // }
+    }
+
+
+
+//SKIP-------------------------------------------------------
+function triggerSkip(){
+    let session=getParameter('session');
+    skipStart(session);
 }
 
+function skipStart(session){
+    let url=API_PREFIX+'skip?session='+session;
+    let xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onload=handleSkip;
+    xmlHttpRequest.open('GET',url,true);
+    xmlHttpRequest.send();
+}
+
+function handleSkip(){
+    console.log(this.responseText);
+    let o=JSON.parse(this.responseText);
+    if(o['status']==='OK'){
+        //id="next-question" onclick="triggerQuestion()
+    document.getElementById('th-question').innerHTML='Question:</br>'+'<div onclick="triggerQuestion()"></div>';
+    }else{
+        console.log(o['errorMessages'][0])
+        document.getElementById('skip-msg').innerHTML = o['errorMessages'][0];;
+    }
+}
+//SCORE-------------------------------------------
 function triggerScore(){
     let session=getParameter('session');
+    scoreStart(session);
 }
+
+function scoreStart(session){
+    let url=API_PREFIX+'answer?session='+session;
+    let xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onload=handleScore;
+    xmlHttpRequest.open('GET',url,true);
+    xmlHttpRequest.send();
+}
+
+function handleScore() {
+    console.log(this.responseText);
+    let o = JSON(this.responseText);
+    if (o['status'] === 'OK') {
+        document.getElementById('th-score').innerHTML = "Your score is: " + o['scoreAdjustment'];
+    }else{
+    }
+}
+
+
+
+
+
+
+
+
 //COOKIES----------------------------------------------------
 // function setCookie(session) {
 //     var d = new Date();
