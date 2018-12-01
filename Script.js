@@ -165,10 +165,46 @@ function handleScore() {
     console.log(this.responseText);
     let o = JSON.parse(this.responseText);
     if (o['status'] === 'OK') {
-        document.getElementById('th-score').innerHTML = o['score'];
+        document.getElementById('th-score').innerHTML = 'USERNAME: '+o['player']+'</br>SCORE: '+ o['score'];
     }else{
         document.getElementById('score-msg').innerHTML = o['errorMessages'][0];;
     }
+}
+
+//LEADERBOARD------------------------------------------------
+
+function getParameterLeaderboard(name) {
+    let url = new URL(window.location.href);
+    return url.searchParams.get(name);
+}
+function triggerLeaderboard(){
+    let session=getParameterLeaderboard('session');
+    let uuid=getParameter('uuid');
+    let sorted=getParameter('sorted');
+    let limit=getParameter('limit');
+    LeaderboardStart(session,uuid,sorted,limit);
+}
+function LeaderboardStart(session,uuid,sorted,limit){
+    let url=API_PREFIX+'leaderboard?session'+session+'&sorted'+sorted+'&limit='+limit;
+    let xmlHttpRequest = new XMLHttpRequest();
+    xmlHttpRequest.onload=handleLeaderboard;
+    xmlHttpRequest.open('GET',url,true);
+    xmlHttpRequest.send();
+}
+
+function handleLeaderboard(){
+    console.log(this.responseText);
+    let o = JSON.parse(this.responseText);
+    let thsArray=o['leaderboard'];
+    for(let i in thsArray){
+        let th=thsArray[i];
+        let html='<ul>';
+        html+='<li>Player: '+th['player'];
+        html+='</ul>';
+        document.getElementById('showLeaderboard').innerHTML=html;
+    }
+
+
 }
 
 
