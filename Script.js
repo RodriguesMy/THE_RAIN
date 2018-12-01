@@ -87,10 +87,11 @@ function questionStart(session){
 function handleQuestion() {
     console.log(this.responseText);
     let o = JSON.parse(this.responseText);
-    if(o['status']==='OK'){
+    if(o['completed']===false){
     document.getElementById('th-question').innerHTML = 'Question:</br>' + o['questionText'];
-}else{
-        document.getElementById('errors').innerHTML= o['questionText'];
+}
+else if(o['completed']===true){
+        window.location.href = 'Score.html?session=' + getParameter('session');
     }
 }
 
@@ -153,7 +154,7 @@ function triggerScore(){
 }
 
 function scoreStart(session){
-    let url=API_PREFIX+'answer?session='+session;
+    let url=API_PREFIX+'score?session='+session;
     let xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onload=handleScore;
     xmlHttpRequest.open('GET',url,true);
@@ -162,10 +163,11 @@ function scoreStart(session){
 
 function handleScore() {
     console.log(this.responseText);
-    let o = JSON(this.responseText);
+    let o = JSON.parse(this.responseText);
     if (o['status'] === 'OK') {
-        document.getElementById('th-score').innerHTML = "Your score is: " + o['scoreAdjustment'];
+        document.getElementById('th-score').innerHTML = o['score'];
     }else{
+        document.getElementById('score-msg').innerHTML = o['errorMessages'][0];;
     }
 }
 
