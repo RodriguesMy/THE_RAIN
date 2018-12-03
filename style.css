@@ -1,0 +1,60 @@
+*{
+    text-decoration:none;
+}
+.about{
+    float:right;
+    font-size:20px;
+}
+.help{
+    float:right;
+    font-size:20px;
+    margin-right:20px;
+}
+.logoname{
+    font-size:20px;
+    padding: 5px;
+    border: 2px solid black;
+}
+.pirate{
+    margin-top:50px;
+    margin-left:200px;
+}
+.text {
+    margin-top:80px;
+    margin-right:50px;
+    margin-left:10px;
+    position: fixed;
+    bottom: 400px;
+    right: 150px;
+    background: steelblue;
+    border-radius: .4em;
+    font-size:20px;
+}
+
+.text:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border: 27px solid transparent;
+    border-left-color: steelblue;
+    border-right: 0;
+    border-bottom: 0;
+    margin-top: -13.5px;
+    margin-right: -27px;
+}
+.start {
+    background-color: steelblue;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: auto;
+    cursor: pointer;
+    font-size:30px;
+    width: 50%;
+}

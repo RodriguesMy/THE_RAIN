@@ -3,32 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Score</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css" />
+
 </head>
 <body onload="triggerScore()">
 <!--STANDARD-->
-<h1 class="logoname" >THE_RAIN <img src="drop.png" alt="drop" width="30" height="30"></img.src></h1>
+<div class="logoname" ><b>THE_RAIN</b> <img src="drop.png" alt="drop" width="20" height="20"></img.src></div>
 <div class="about">
     <a href="About.html">ABOUT</a>
 </div>
 <div class="help">
     <a href="help.html">HELP</a>
 </div>
-<div class="logo">
+<div class="pirate">
     <img src="logo.PNG" alt="one-pirate"   width="200";></img.src>
 </div>
 <!--STANDARD-->
 
-<!--VIEW SCORE--><div>You completed the Treasure Hunt! </br> Now you are a real pirate! See you at the sea's!</br> </div>
-<div> Don't forget to follow us on social media!</div>
-
+<!--VIEW SCORE--><div class="text">You completed the Treasure Hunt! </br> Now you are a real pirate! See you at the sea's!</br>
+ Don't forget to follow us on social media!
+    </br>
 <a href="https://www.facebook.com/The_RAIN-1135235886645727/?modal=admin_todo_tour" class="fbsocial" target="_blank"><img src="fblogo.png" alt="fb" width="50" height="50" align="center"></img.src></a>
 <a href="https://twitter.com/TheRAIN07623767?fbclid=IwAR0EglS9wxJnK4HrLnDl-sEAEEvM4_atD08mTpyAIplQFEUaobV7d2so6Qc" class="twittersocial"  target="_blank"><img src="twitterlogo.png" alt="twitter" width="50" height="50" align="center"></img.src></a>
 </br>
 
 <!--SCORE--><div id="th-score"></div>
 <!--SCORE ERROR--><div id="score-msg" style="color:red"></div>
-
-<!--GO TO LEADERBOARD--><button id="go-toLeaderboard" onclick="triggerLeaderboard()">Visit our Leaderboard!</button>
+</div>
+<!--GO TO LEADERBOARD--><div class="start" id="go-toLeaderboard" onclick="triggerLeaderboard()">Visit our Leaderboard!</div>
 <script src="Script.js" ></script>
 
 </body>
