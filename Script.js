@@ -98,6 +98,7 @@ else if(o['completed']===true){
         let lat =position.coords.latitude;
         let lng =position.coords.longitude;
         apiLocation(getParameter('session'),lat,lng);
+        document.getElementById('th-location').innerHTML='<div>REQUIRES LOCATION</div>';
     }
 
     document.getElementById('skip-msg').innerHTML="";
@@ -152,7 +153,8 @@ function handleSkip(){
     let o=JSON.parse(this.responseText);
     if(o['status']==='OK'){
         //id="next-question" onclick="triggerQuestion()
-    document.getElementById('th-question').innerHTML='Question:</br>'+'<div onload="triggerQuestion()"></div>';
+    // document.getElementById('th-question').innerHTML='Question:</br>'+'<div onload="triggerQuestion()"></div>';
+        location.reload();
     }else{
         console.log(o['errorMessages'][0])
         document.getElementById('skip-msg').innerHTML = o['errorMessages'][0];;
@@ -190,13 +192,10 @@ function getParameterLeaderboard(name) {
 }
 function triggerLeaderboard(){
     let session=getParameterLeaderboard('session');
-    let uuid=getParameter('uuid');
-    let sorted=getParameter('sorted');
-    let limit=getParameter('limit');
-    LeaderboardStart(session,uuid,sorted,limit);
+    LeaderboardStart(session);
 }
-function LeaderboardStart(session,uuid,sorted,limit){
-    let url=API_PREFIX+'leaderboard?session'+session+'&sorted'+sorted+'&limit='+limit;
+function LeaderboardStart(session){
+    let url=API_PREFIX+'leaderboard?session'+session+'&sorted&limit='+10;
     let xmlHttpRequest = new XMLHttpRequest();
     xmlHttpRequest.onload=handleLeaderboard;
     xmlHttpRequest.open('GET',url,true);
@@ -210,11 +209,10 @@ function handleLeaderboard(){
     for(let i in thsArray){
         let th=thsArray[i];
         let html='<ul>';
-        html+='<li>Player: '+th['player'];
+        html+='<li>Player: '+th['player']+'</li><li>Score: '+th['score']+'</li>';
         html+='</ul>';
         document.getElementById('showLeaderboard').innerHTML=html;
     }
-
 
 }
 
