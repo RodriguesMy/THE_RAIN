@@ -40,6 +40,7 @@ function apiLocation(session, lat, lng) {
 }
 
 
+
 //START------------------------------------------------------------
 function triggerStart() {
     let player = document.getElementById('player').value;
@@ -93,6 +94,12 @@ function handleQuestion() {
 else if(o['completed']===true){
         window.location.href = 'Score.html?session=' + getParameter('session');
     }
+    if(o['requiresLocation']===true){
+        let lat =position.coords.latitude;
+        let lng =position.coords.longitude;
+        apiLocation(getParameter('session'),lat,lng);
+    }
+
     document.getElementById('skip-msg').innerHTML="";
     document.getElementById('result').innerHTML="";
     document.getElementById('errors').innerHTML="";
@@ -145,7 +152,7 @@ function handleSkip(){
     let o=JSON.parse(this.responseText);
     if(o['status']==='OK'){
         //id="next-question" onclick="triggerQuestion()
-    document.getElementById('th-question').innerHTML='Question:</br>'+'<div onclick="triggerQuestion()"></div>';
+    document.getElementById('th-question').innerHTML='Question:</br>'+'<div onload="triggerQuestion()"></div>';
     }else{
         console.log(o['errorMessages'][0])
         document.getElementById('skip-msg').innerHTML = o['errorMessages'][0];;
