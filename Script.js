@@ -61,6 +61,7 @@ function handleStart() {
     let o = JSON.parse(this.responseText);
     if (o['status'] === 'OK') {
         window.location.href = 'Question.html?session=' + o['session'];
+        setCookie(o['session']);
     } else {
         document.getElementById('errorsDiv').innerHTML = o['errorMessages'][0];
     }
@@ -152,8 +153,6 @@ function handleSkip(){
     console.log(this.responseText);
     let o=JSON.parse(this.responseText);
     if(o['status']==='OK'){
-        //id="next-question" onclick="triggerQuestion()
-    // document.getElementById('th-question').innerHTML='Question:</br>'+'<div onload="triggerQuestion()"></div>';
         location.reload();
     }else{
         console.log(o['errorMessages'][0])
@@ -186,13 +185,11 @@ function handleScore() {
 
 //LEADERBOARD------------------------------------------------
 
-function getParameterLeaderboard(name) {
-    let url = new URL(window.location.href);
-    return url.searchParams.get(name);
-}
+// window.location.href = 'Question.html?session=' + o['session'];
 function triggerLeaderboard(){
-    let session=getParameterLeaderboard('session');
+    let session=getParameter('session');
     LeaderboardStart(session);
+    console.log(session);
 }
 function LeaderboardStart(session){
     let url=API_PREFIX+'leaderboard?session'+session+'&sorted&limit='+10;
@@ -203,6 +200,7 @@ function LeaderboardStart(session){
 }
 
 function handleLeaderboard(){
+
     console.log(this.responseText);
     let o = JSON.parse(this.responseText);
     let thsArray=o['leaderboard'];
@@ -213,7 +211,6 @@ function handleLeaderboard(){
         html+='</ul>';
         document.getElementById('showLeaderboard').innerHTML=html;
     }
-
 }
 
 
@@ -223,37 +220,37 @@ function handleLeaderboard(){
 
 
 
-//COOKIES----------------------------------------------------
-// function setCookie(session) {
-//     var d = new Date();
-//     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-//     var expires = "expires="+d.toUTCString();
-//     document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-// }
-//
-// function getCookie(cname) {
-//     var name = cname + "=";
-//     var ca = document.cookie.split(';');
-//     for(var i = 0; i < ca.length; i++) {
-//         var c = ca[i];
-//         while (c.charAt(0) == ' ') {
-//             c = c.substring(1);
-//         }
-//         if (c.indexOf(name) == 0) {
-//             return c.substring(name.length, c.length);
-//         }
-//     }
-//     return "";
-// }
-//
-// function checkCookie() {
-//     var user = getCookie("username");
-//     if (user != "") {
-//         alert("Welcome again " + user);
-//     } else {
-//         user = prompt("Please enter your name:", "");
-//         if (user != "" && user != null) {
-//             setCookie("username", user, 365);
-//         }
-//     }
-// }
+//COOKIES---------------------------------------------------
+function setCookie(session) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
