@@ -112,7 +112,7 @@ else if(o['completed']===true){
 
 }
 
-function sendLocation() {
+function sendLocation(position) {
     let lat = position.coords.latitude;
     let lng = position.coords.longitude;
     let session=getCookie('session');
