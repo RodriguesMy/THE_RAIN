@@ -52,3 +52,12 @@ Achieved a few things today.
 So far we created the /list, /start, /question, /answer.
 There are a few mistakes if the status is not okay, meaning with the error messages, but if the status is ok it works fine.
 I will contact my proffeson in Monday to sort that out.
+
+Date 3 December
+Myriam, Zacharias,Sotiris
+We had a meeting to discuss our parts in the assignment. We discussed that we should be more active in social media, this part is Sotiris'. In addition, we discussed how Zacharias is going to do the design on CSS. 
+
+Date 5 December
+Myriam, Zacharias, Sotiris
+Our deadline is tomorrow. So far the team had already prepared the design and we already created the /score, /location. The only thing that is left is the /leaderboard. We are having some troubles about getting the treasure0hint-id and the session but we will consult our instructor Mr. Nicos Kasenidis. 
+
