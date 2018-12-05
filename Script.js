@@ -111,6 +111,7 @@ else if(o['completed']===true){
 
 //ANSWER--------------------------------------------------
 function triggerAnswer(){
+    location.reload();
     let answer=document.getElementById('answer').value;
     let session=getParameter('session');
     answerStart(session,answer);
@@ -189,43 +190,50 @@ function handleScore() {
 function triggerLeaderboard(){
     let session=getParameter('session');
     LeaderboardStart(session);
+    window.location.href="Leaderboard.html?session=" + getCookie("session");
     console.log(session);
 }
 function LeaderboardStart(session){
-    let url=API_PREFIX+'leaderboard?session'+session+'&sorted&limit='+10;
+    let url=API_PREFIX+'leaderboard?session='+getCookie("session")+'&sorted&limit='+20;
+    console.log("LEADERBOARD URL: " + url);
     let xmlHttpRequest = new XMLHttpRequest();
+
+    xmlHttpRequest .onreadystatechange = function() {
+        console.log(this.responseText);
+        if (this.readyState == 4 && this.status == 200) {
+
+            let o = JSON.parse(this.responseText);
+            let thsArray=o['leaderboard'];
+            let html='<ul>';
+            for(let i in thsArray){
+                let th=thsArray[i];
+                html+='<li>Player: '+th['player']+' scored '+th['score']+' in '+th['completionTime']+'</li>';
+            }
+            html+='</ul>';
+            document.getElementById('showLeaderboard').innerHTML=html;
+        }
+        else {
+            console.log("ERROR - Could not get leaderboard");
+        }
+    };
+
     xmlHttpRequest.onload=handleLeaderboard;
     xmlHttpRequest.open('GET',url,true);
     xmlHttpRequest.send();
 }
 
 function handleLeaderboard(){
-
     console.log(this.responseText);
-    let o = JSON.parse(this.responseText);
-    let thsArray=o['leaderboard'];
-    for(let i in thsArray){
-        let th=thsArray[i];
-        let html='<ul>';
-        html+='<li>Player: '+th['player']+'</li><li>Score: '+th['score']+'</li>';
-        html+='</ul>';
-        document.getElementById('showLeaderboard').innerHTML=html;
-    }
+
 }
-
-
-
-
-
-
-
 
 //COOKIES---------------------------------------------------
 function setCookie(session) {
     var d = new Date();
+    let exdays = 365;
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = "session=" + session + ";" + expires + ";path=/";
 }
 
 function getCookie(cname) {
