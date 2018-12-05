@@ -106,7 +106,6 @@ else if(o['completed']===true){
     }
 
     document.getElementById('skip-msg').innerHTML="";
-    document.getElementById('result').innerHTML="";
     document.getElementById('errors').innerHTML="";
     document.getElementById('answer').innerHTML="";
 
@@ -142,6 +141,7 @@ function handleAnswer() {
         if (o['completed'] === 'true') {
             window.location.href = 'Score.html?session=' + o['session'];
         }
+        document.getElementById('points').innerHTML='Points: '+o['scoreAdjustment'];
     }
 
 
