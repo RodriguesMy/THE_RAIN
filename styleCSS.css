@@ -5,6 +5,7 @@ html
 
 body {
     background-image: url("background.jpg");
+    font-size:30px;
 }
 
 .pirate {
@@ -23,4 +24,8 @@ body {
     background-color: azure;
     border: solid black 2px;
     padding: 4px;
+}
+
+button{
+    font-size:30px;
 }
