@@ -39,12 +39,12 @@ We had a meeting with our proffesor Mr. Nearchos Paspallis.
 In this meeting, we created some og the javascript code.
 
 Date 29 November</br>
-Attendance:Myriam
+Attendance:Myriam</br>
 Myriam tried to develop some of the javascript code.
 So far she did the /list and the /start but had some trouble with some code.
 
-Date 30 November
-Myriam, Zacharias
+Date 30 November</br>
+Myriam, Zacharias</br>
 Had a quick meeting with our Mr. Nearchos Paspallis.
 Started the whole thing from the beggining because it was messed up.
 This actually helped because we were able to understand how javascript works with html.
@@ -52,3 +52,12 @@ Achieved a few things today.
 So far we created the /list, /start, /question, /answer.
 There are a few mistakes if the status is not okay, meaning with the error messages, but if the status is ok it works fine.
 I will contact my proffeson in Monday to sort that out.
+
+Date 3 December</br>
+Myriam, Zacharias,Sotiris</br>
+We had a meeting to discuss our parts in the assignment. We discussed that we should be more active in social media, this part is Sotiris'. In addition, we discussed how Zacharias is going to do the design on CSS. 
+
+Date 5 December</br>
+Myriam, Zacharias, Sotiris</br>
+Our deadline is tomorrow. So far the team had already prepared the design and we already created the /score, /location. The only thing that is left is the /leaderboard. We are having some troubles about getting the treasure0hint-id and the session but we will consult our instructor Mr. Nicos Kasenidis. 
+
