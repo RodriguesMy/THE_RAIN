@@ -5,7 +5,7 @@ html
 
 body {
     background-image: url("background.jpg");
-    font-size:30px;
+    font-size:25px;
 }
 
 .pirate {
@@ -27,5 +27,5 @@ body {
 }
 
 button{
-    font-size:30px;
+    font-size:25px;
 }

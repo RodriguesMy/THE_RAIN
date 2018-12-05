@@ -95,11 +95,14 @@ function handleQuestion() {
 else if(o['completed']===true){
         window.location.href = 'Score.html?session=' + getParameter('session');
     }
-    if(o['requiresLocation']===true){
-        let lat =position.coords.latitude;
-        let lng =position.coords.longitude;
-        apiLocation(getParameter('session'),lat,lng);
-        document.getElementById('th-location').innerHTML='<div>REQUIRES LOCATION</div>';
+
+    if (navigator.geolocation) {
+        if(o['requiresLocation']===true) {
+            document.getElementById('th-location').innerHTML='<div>REQUIRES LOCATION</div>';
+            navigator.geolocation.getCurrentPosition(sendLocation);
+        }
+    } else {
+        alert("Geolocation is not supported by this browser.");
     }
 
     document.getElementById('skip-msg').innerHTML="";
@@ -107,6 +110,13 @@ else if(o['completed']===true){
     document.getElementById('errors').innerHTML="";
     document.getElementById('answer').innerHTML="";
 
+}
+
+function sendLocation() {
+    let lat = position.coords.latitude;
+    let lng = position.coords.longitude;
+    let session=getCookie('session');
+    apiLocation(getParameter(session,lat,lng));
 }
 
 //ANSWER--------------------------------------------------
@@ -159,6 +169,13 @@ function handleSkip(){
         console.log(o['errorMessages'][0])
         document.getElementById('skip-msg').innerHTML = o['errorMessages'][0];;
     }
+}
+function ConfirmSkip() {
+    let c=confirm("Are you sure you want to skip?");
+    if(c==true){
+        triggerSkip();
+    }
+
 }
 //SCORE-------------------------------------------
 function triggerScore(){
