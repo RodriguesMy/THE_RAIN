@@ -66,5 +66,5 @@ Our deadline is tomorrow. So far the team had already prepared the design and we
 
 Date 6 December</br>
 Myriam, Zacharias, Sotiris</br>
-Today is the last day. The only thing that is left is the question/answer part. Meaning we have to make the inputs change depending on the type of question, and the testing part.
+Today is the last day. The only thing that is left is the question/answer part. Meaning we have to make the inputs change depending on the type of question, and the testing part. Myriam already started her part but there are some difficulties.
 
