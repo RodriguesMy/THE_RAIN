@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Testing page</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet"
+
+          href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+
+<h1>Testing page</h1>
+
+<h2>User Acceptance Plan</h2>
+
+<p>Tested by other teams to check for mistakes. They also made reccomendations for more responsive design.</p>
+
+
+
+<h2>Usability Assessment</h2>
+
+
+
+<table>
+
+    <tr>
+
+        <th>Nielsen Heuristic</th>
+        <th>Compliance</th>
+    </tr>
+    <tr>
+        <td>Visibility of system status</td>
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+    <tr>
+        <td>Match between system and the real world</td>
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+    <tr>
+        <td>User control and freedom</td>
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+    <tr>
+        <td>Consistency and standards</td>
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Error prevention</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Recognition rather than recall</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Flexibility and efficiency of use</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Aesthetic and minimalist design</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Help users recognize, diagnose, and recover from errors</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+    <tr>
+
+        <td>Help and documentation</td>
+
+        <td><i class="material-icons">done</i> </td>
+    </tr>
+
+</table>
+
+<h2>Unit Tests</h2>
+
+<p><a href="https://codecyprus.org/th/testing" target="_blank">https://codecyprus.org/th/testing</a>, for unit tests.</p>
+
+<div id="loader" class="loader" hidden></div>
+
+
+
+
+
+
+<h3>Testing <code>/start</code></h3>
+
+
+
+<button id="buttonTestStart" class="button" onclick="testStart()">Run Test</button>
+
+<button id="buttonClearStart" class="button" onclick="document.getElementById('message').innerHTML = 'Messages to show up here...'">Clear</button>
+
+
+
+<hr>
+
+
+
+<div id="message" class="errorMessage">
+
+    Messages to show up here...
+
+</div>
+<hr>
+
+<h3>Testing <code>/list</code></h3>
+<button id="buttonTestList" class="button" onclick="testList(10)">Run Test</button>
+
+<button id="buttonClearList" class="button" onclick="document.getElementById('content').innerHTML = 'The results of the test to show up here...';">Clear</button>
+
+
+
+<div id="content" class="testMessage">
+
+    The results of the test to show up here...
+
+</div>
+<hr>
+
+
+
+
+<script>
+
+    function testList(){
+
+        let tListRequest = new XMLHttpRequest();
+
+        tListRequest.open("GET", 'https://codecyprus.org/th/test-api/list?number-of-ths=' +15, true);
+
+        tListRequest.send();
+
+        tListRequest.onload = function () {
+
+            let listResponse = JSON.parse(this.responseText);
+
+            quizzes = listResponse.treasureHunts;
+
+            let htmlText = "";
+
+            for (let i = 0; i < quizzes.length; i++) {
+
+                htmlText +=
+
+                    "<button onclick='testShowMore("+i+")' class='availableQuiz'>" +
+
+                    " <span class='quizzName'>" + quizzes[i].name + ".</span><br></button><br>";
+
+            }
+
+            content.innerHTML = htmlText;
+
+        };
+
+    }
+
+    function testStart() {
+        let testStartRequest = new XMLHttpRequest();
+        testStartRequest.open("GET", 'https://codecyprus.org/th/test-api/start?player=player', true);
+        testStartRequest.send();
+        testStartRequest.onload = function () {
+            if (this.status === 200&& this.readyState ===4) {
+                let tsrResponse = JSON.parse(testStartRequest.responseText);
+                document.getElementById("message") .innerHTML = tsrResponse.errorMessages;
+            }
+        };
+    }
+
+</script>
+
+</body>
+
+</html>
