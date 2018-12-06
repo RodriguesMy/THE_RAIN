@@ -22,15 +22,3 @@ function leaderTest() {
     http.send();
 }
 
-// function handleLeaderboard() {
-//     console.log(this.responseText);
-//     let o = JSON.parse(this.responseText);
-//     let thsArray = o['leaderboard'];
-//     for (let i in thsArray) {
-//         let th = thsArray[i];
-//         let html = '<ul>';
-//         html += '<li>Player: ' + th['player'];
-//         html += '</ul>';
-//         document.getElementById('showLeaderboard').innerHTML = html;
-//     }
-// }

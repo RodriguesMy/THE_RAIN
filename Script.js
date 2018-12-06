@@ -137,11 +137,11 @@ function answerStart(session,answer){
 function handleAnswer() {
     console.log(this.responseText);
     let o = JSON.parse(this.responseText);
-        document.getElementById('result').innerHTML = 'Result: ' + o['correct']+'<div>'+o['message']+'</div>';
+        document.getElementById('points').innerHTML = '<div>Result: ' + o['correct']+'<div>'+o['message']+'</div></div>';
         if (o['completed'] === 'true') {
             window.location.href = 'Score.html?session=' + o['session'];
         }
-        document.getElementById('points').innerHTML='Points: '+o['scoreAdjustment'];
+
     }
 
 
